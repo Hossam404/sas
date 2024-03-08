@@ -7,14 +7,19 @@ on:
     branches: [main]
 
 jobs:
-  build-node:
-    name: Node app
+  Linter-run:
+    name: Run Linter
     runs-on: ubuntu-latest
 
     steps:
     - name: Super-Linter
       uses: super-linter/super-linter@v5.7.2
+    
+  Docker:
+    name: Run Node
+    runs-on: ubuntu-latest
 
+    steps:
     - name: Print current directory and files
       run: |
         pwd
@@ -27,10 +32,10 @@ jobs:
         docker push ${{ secrets.DOCKER_USERNAME }}/node-img:v1
            
         
-    # - name: Build and Push Docker Image
-    #   uses: mr-smithers-excellent/docker-build-push@v4
-    #   with:
-    #     image: hussamgamal/nide
-    #     registry: docker.io
-    #     username: ${{ secrets.DOCKER_USERNAME }}
-    #     password: ${{ secrets.DOCKER_PASSWORD }}
+    - name: Build and Push Docker Image
+      uses: mr-smithers-excellent/docker-build-push@v4
+      with:
+        image: hussamgamal/nide
+        registry: docker.io
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
