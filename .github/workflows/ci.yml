@@ -8,18 +8,20 @@ on:
 
 jobs:
   build-node:
-    name: Run linters
+    name: Node app
     runs-on: ubuntu-latest
 
     steps:
     - name: Super-Linter
       uses: super-linter/super-linter@v5.7.2
+      
     - name: Docker Login
       uses: docker/login-action@v3.0.0
       with:
         registry: docker.io
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}              
+    
     - name: Docker build and push
       uses: cloudposse/github-action-docker-build-push@1.15.0
       with:
@@ -29,8 +31,7 @@ jobs:
         registry: docker.io
         image_name: node-img 
         login: ${{ secrets.DOCKER_USERNAME }}
-        tags: v1
-              
+        tags: v1          
           
     - name: Build and Push Docker Image
       uses: mr-smithers-excellent/docker-build-push@v4
