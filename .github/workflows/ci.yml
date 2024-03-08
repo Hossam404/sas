@@ -41,18 +41,15 @@ jobs:
     steps:
     - name: Checkout Terraform
       uses: actions/checkout@v4.1.1
-      with:
-        path: TerraformDocker 
     
     - name: Print Directory Structure
       run: |
+        pwd
         ls -R
         tree -L 3
 
     - name: Initialize Terraform
       run: |
-        pwd
-        ls
         cd TerraformDocker
         terraform init
 
