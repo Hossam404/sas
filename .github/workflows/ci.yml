@@ -39,15 +39,22 @@ jobs:
     needs: Docker
 
     steps:
+    - name: Set kubeconfig
+      run: echo "$KUBECONFIG_CONTENT" > $HOME/.kube/config
+        
     - name: Checkout Terraform
       uses: actions/checkout@v4.1.1
     
-    - name: Print Directory Structure
+    - name: Verify kubectl version
+      run: kubectl version --client
+
+    - name: Debugging Info
       run: |
         pwd
         ls -R
         tree -L 3
-
+        kubectl config view
+        
     - name: Initialize Terraform
       run: |
         cd TerraformDocker
