@@ -26,7 +26,7 @@ jobs:
       run: |
         echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
         docker image build -t ${{ secrets.DOCKER_USERNAME }}/node-img:v1 .
-        docker push ${{ secrets.DOCKER_USERNAME }}/nide:v1
+        docker push ${{ secrets.DOCKER_USERNAME }}/node-img:v1
         
     - name: Docker Login
       uses: docker/login-action@v3.0.0
@@ -40,11 +40,11 @@ jobs:
       with:
         workdir: ./
         file: Dockerfile
-        repository: hussamgamal/nide
+        repository: hussamgamal/node-img
         registry: docker.io
-        image_name: node-img 
         login: ${{ secrets.DOCKER_USERNAME }}
-        tags: v2          
+        tags: v2
+        #args: --setopt=features.credHelpers=,multi-platform.orchestrator=ksync
           
     - name: Build and Push Docker Image
       uses: mr-smithers-excellent/docker-build-push@v4
