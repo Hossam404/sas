@@ -43,8 +43,7 @@ jobs:
         repository: hussamgamal/node-img
         registry: docker.io
         login: ${{ secrets.DOCKER_USERNAME }}
-        tags: "v2"
-          
+        
     - name: Build and Push Docker Image
       uses: mr-smithers-excellent/docker-build-push@v4
       with:
