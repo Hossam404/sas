@@ -46,6 +46,8 @@ jobs:
 
     - name: Initialize Terraform
       run: |
+        pwd
+        ls
         cd TerraformDocker
         terraform init
 
