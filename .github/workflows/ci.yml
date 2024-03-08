@@ -12,8 +12,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Super-Linter
-      uses: super-linter/super-linter@v5.7.2
+    #- name: Super-Linter
+    #  uses: super-linter/super-linter@v5.7.2
+
+    - name: Print current directory and files
+      run: |
+        pwd
+        ls -a
       
     - name: Docker Login
       uses: docker/login-action@v3.0.0
