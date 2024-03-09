@@ -97,6 +97,10 @@ jobs:
         kubectl get deployment -n node
         kubectl get pods -n node -owide
         kubectl get svc -n node -owide
+        sleep 100
+        kubectl get deployment -n node
+        kubectl get pods -n node -owide
+        kubectl get svc -n node -owide
       shell: bash
 
     - name: Test service URLs
