@@ -41,15 +41,13 @@ jobs:
     steps:
     - name: Checkout Terraform
       uses: actions/checkout@v4.1.1
-    
-    - name: Setup Kubeconfig
-      uses: actions-hub/kubectl@master
-      env:
-        KUBE_CONFIG: ${{ secrets.KUBECONFIG_CONTENT }}
-        
+
     - name: Verify Kubeconfig Content
       run: echo "${{ secrets.KUBECONFIG_CONTENT }}"
 
+    - name: Setup Kubeconfig
+      run: echo "${{ secrets.KUBECONFIG_CONTENT }}" | base64 --decode > ./.kube/config  
+    
     - name: Debugging Info
       run: |
         pwd
