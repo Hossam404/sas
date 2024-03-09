@@ -96,5 +96,7 @@ jobs:
       run: |
         kubectl get deployment -n node
         kubectl get pods -n node -owide 
+        sleep 30
         kubectl get svc -n node -owide
+      shell: bash
         
