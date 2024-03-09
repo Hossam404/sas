@@ -107,7 +107,3 @@ jobs:
       run: |
           minikube service list
           minikube service node-app-service --url -n node
-          minikube ip
-          kubectl get events -n node
-          kubectl describe service node-app-service -n node
-          kubectl port-forward service/node-app-service 32626:80 -n node &
