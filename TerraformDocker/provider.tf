@@ -8,6 +8,6 @@ terraform {
 }
 
 provider "kubernetes" {
-  config_path    = "/github/workspace/config"
+  config_path    = "/config"
   config_context = "minikube"
 }
