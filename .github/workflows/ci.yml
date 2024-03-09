@@ -81,8 +81,13 @@ jobs:
       uses: medyagh/setup-minikube@master
     
     - name: Deploy to minikube
-      run:
-        kubectl apply -f k8s-node-app.yaml
+      run: |
+        cd TerraformDocker
+        kubectl apply -f Kubernetes
     
     - name: Try the cluster
-      run: kubectl get pods -n node
+      run: |
+        kubectl get deployment -n node
+        kubectl get pods -n node -owide 
+        kubectl get svc -n node -owide
+        
