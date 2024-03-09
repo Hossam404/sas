@@ -40,7 +40,7 @@ jobs:
 
     steps:
     - name: Set kubeconfig
-      run: echo "$KUBECONFIG_CONTENT" > $HOME/.kube/config
+      run: echo "${{ secrets.KUBECONFIG_CONTENT }}" > $HOME/.kube/config
         
     - name: Checkout Terraform
       uses: actions/checkout@v4.1.1
