@@ -48,14 +48,6 @@ jobs:
       with:
         terraform_version: 1.1.9
         
-    
-    - name: Debugging Info
-      run: |
-        pwd
-        ls -R
-        tree -L 3
-        kubectl config viewthis is the result
-        
     - name: Initialize Terraform
       id: init
       run: |
