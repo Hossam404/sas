@@ -80,10 +80,17 @@ jobs:
     - name: Start minikube
       uses: medyagh/setup-minikube@master
     
-    - name: Deploy to minikube
-      run: |
-        cd TerraformDocker
-        kubectl apply -f Kubernetes
+    - name: Apply Kubernetes Namespace
+      run: kubectl apply -f TerraformDocker/Kubernetes/namespace.yaml
+      shell: bash
+    
+    - name: Apply Kubernetes Deployment
+      run: kubectl apply -f TerraformDocker/Kubernetes/deployment.yaml
+      shell: bash
+
+    - name: Apply Kubernetes Service
+      run: kubectl apply -f TerraformDocker/Kubernetes/service.yaml
+      shell: bash
     
     - name: Try the cluster
       run: |
