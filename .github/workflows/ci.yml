@@ -39,10 +39,9 @@ jobs:
     needs: Docker
 
     steps:
-    - name: Set kubeconfig
     - uses: actions-hub/kubectl@master
       env:
-        KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
+        KUBE_CONFIG: ${{ secrets.KUBECONFIG_CONTENT }}
       with:
         args: get pods -n node
         
