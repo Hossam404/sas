@@ -47,6 +47,12 @@ jobs:
         mkdir -p /github/workspace/config
         echo "${{ secrets.KUBECONFIG_CONTENT }}" > /github/workspace/config/config
       shell: bash
+    
+    - name: Set up Kubernetes configuration
+      run: |
+        mkdir -p ./config
+        echo "${{ secrets.KUBECONFIG_CONTENT }}" > ./config/config
+      shell: bash
 
     # Install the latest version of Terraform CLI
     - name: Install Terraform
