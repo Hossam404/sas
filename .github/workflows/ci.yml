@@ -101,4 +101,7 @@ jobs:
 
     - name: Test service URLs
       run: |
+          minikube service node-app-service -n node
           minikube service list
+          minikube ip
+
