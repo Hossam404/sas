@@ -41,12 +41,6 @@ jobs:
     steps:
     - name: Checkout Terraform
       uses: actions/checkout@v4.1.1
-    
-    - name: Start minikube
-      uses: medyagh/setup-minikube@master
-    
-    - name: Try the cluster
-      run: kubectl get pods
 
     # Install the latest version of Terraform CLI
     - name: Install Terraform
@@ -81,3 +75,14 @@ jobs:
       run: |
         cd TerraformDocker
         terraform apply --auto-approve
+
+    
+    - name: Start minikube
+      uses: medyagh/setup-minikube@master
+    
+    - name: Deploy to minikube
+      run:
+        kubectl apply -f k8s-node-app.yaml
+    
+    - name: Try the cluster
+      run: kubectl get pods -n node
