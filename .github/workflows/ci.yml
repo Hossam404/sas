@@ -102,4 +102,4 @@ jobs:
     - name: Test service URLs
       run: |
           minikube service list
-          minikube service node-app-service --url
+          minikube service node-app-service --url -n node
