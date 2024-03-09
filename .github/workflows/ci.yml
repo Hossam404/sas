@@ -106,7 +106,7 @@ jobs:
     - name: Test service URLs
       run: |
           minikube service list
-          minikube service node-app --url
+          minikube service node-app-service --url
           minikube ip
           kubectl get events -n node
           kubectl describe service node-app-service -n node
