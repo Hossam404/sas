@@ -69,11 +69,9 @@ jobs:
       id: plan
       run: |
         cd TerraformDocker
-        terraform plan -no-color
+        terraform plan
 
     - name: Terraform Apply
       run: |
         cd TerraformDocker
         terraform apply --auto-approve
-      env:
-          KUBECONFIG: $HOME/.kube/config
