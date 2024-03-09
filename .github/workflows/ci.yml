@@ -42,10 +42,11 @@ jobs:
     - name: Checkout Terraform
       uses: actions/checkout@v4.1.1
     
-    - name: Set up Kubernetes configuration
-      run: |
-        pwd
-        ls
+    - name: Start minikube
+      uses: medyagh/setup-minikube@master
+    
+    - name: Try the cluster
+      run: kubectl get pods
 
     # Install the latest version of Terraform CLI
     - name: Install Terraform
