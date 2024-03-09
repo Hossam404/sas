@@ -102,4 +102,3 @@ jobs:
     - name: Test service URLs
       run: |
           minikube service list
-          curl http://192.168.49.2:31542/
