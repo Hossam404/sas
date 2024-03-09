@@ -47,9 +47,10 @@ jobs:
 
     - name: Setup Kubeconfig
       run: |
-            mkdir -p $HOME/.kube
-            touch config
-            echo "${{ secrets.KUBECONFIG_CONTENT }}" | base64 --decode > $HOME/.kube/config  
+        mkdir -p $HOME/.kube
+        touch $HOME/.kube/config
+        echo "${{ secrets.KUBECONFIG_CONTENT }}" | base64 -d > $HOME/.kube/config
+
     
     - name: Debugging Info
       run: |
