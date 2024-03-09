@@ -16,3 +16,5 @@ spec:
       containers:
       - name: node-app-container
         image: "hussamgamal/node-img:v1"  
+        ports:
+          - containerPort: 3000
