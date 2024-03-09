@@ -42,15 +42,12 @@ jobs:
     - name: Checkout Terraform
       uses: actions/checkout@v4.1.1
 
-    - name: Verify Kubeconfig Content
-      run: echo "${{ secrets.KUBECONFIG_CONTENT }}"
-
-    - name: Setup Kubeconfig
-      run: |
-        mkdir -p $HOME/.kube
-        touch $HOME/.kube/config
-        echo "${{ secrets.KUBECONFIG_CONTENT }}" | base64 -d > $HOME/.kube/config
-
+    # Install the latest version of Terraform CLI
+    - name: Install Terraform
+      uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 1.1.9
+        
     
     - name: Debugging Info
       run: |
@@ -60,19 +57,27 @@ jobs:
         kubectl config viewthis is the result
         
     - name: Initialize Terraform
+      id: init
       run: |
         cd TerraformDocker
         terraform init
 
-    - name: Terraform Plan
-      run: |
-        cd TerraformDocker
-        terraform plan
-
+    # Checks that all Terraform configuration files adhere to a canonical format
+    - name: Terraform Format
+      id: format
+      run: terraform fmt -check
+      continue-on-error: true
+   
     - name: Terraform Validate
       run: |
         cd TerraformDocker
         terraform validate
+   
+    - name: Terraform Plan
+      id: plan
+      run: |
+        cd TerraformDocker
+        terraform plan -no-color
 
     - name: Terraform Apply
       run: |
