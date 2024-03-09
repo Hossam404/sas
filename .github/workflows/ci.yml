@@ -95,8 +95,11 @@ jobs:
     - name: Try the cluster
       run: |
         kubectl get deployment -n node
-        kubectl get pods -n node -owide 
-        sleep 30
+        kubectl get pods -n node -owide
         kubectl get svc -n node -owide
       shell: bash
-        
+
+    - name: Test service URLs
+      run: |
+          minikube service list
+          minikube service node-app-service --url
