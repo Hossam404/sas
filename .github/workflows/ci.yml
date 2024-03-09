@@ -39,18 +39,16 @@ jobs:
     needs: Docker
 
     steps:
-    - uses: actions-hub/kubectl@master
-      env:
-        KUBE_CONFIG: ${{ secrets.KUBECONFIG_CONTENT }}
-        
     - name: Checkout Terraform
       uses: actions/checkout@v4.1.1
     
+    - name: Setup Kubeconfig
+      uses: actions-hub/kubectl@v1
+      env:
+        KUBE_CONFIG: ${{ secrets.KUBECONFIG_CONTENT }}
+        
     - name: Verify Kubeconfig Content
       run: echo "${{ secrets.KUBECONFIG_CONTENT }}"
-
-    - name: Verify kubectl version
-      run: kubectl version --client
 
     - name: Debugging Info
       run: |
