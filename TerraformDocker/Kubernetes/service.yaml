@@ -8,5 +8,6 @@ spec:
     app: node-app
   type: NodePort
   ports:
-  - port: 8081  
+  - name: http 
     targetPort: 3000  
+    port: 80
